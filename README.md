@@ -1,2 +1,4 @@
 # WhatsAppSeleniumBot
 For New Years Eve I programmed this small Programm which can send Messages at a from you choosen time point.
+This programm was specifically programmed for my version of MacOs (BigSur) but it can also work for any other Systeme whith some minor adjustments.
+It uses Data from a german website to tell the time, if you want to use it for another timzone, you should change the website and also the part where it looks for the time. In the file i'll write comments to explain what the different lines do. Any kind of feedback is welcome :
