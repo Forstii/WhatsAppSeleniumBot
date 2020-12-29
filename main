@@ -1,0 +1,36 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import unittest
+from selenium.webdriver.common.keys import Keys
+import time
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+Zeitpunkt = input("Abschickzeitpunkt hh:mm:ss :")
+Kontakt = input("Kontakt:")
+Inhalt = input("Nachrichten Inhalt:")
+print(Zeitpunkt)
+path = "/Users/adrianforst/Desktop/PythonStuff/NotScripts/chromedriver"
+driver = webdriver.Chrome(path)
+driver.execute_script("window.open('https://www.atomuhr.de/uhrzeit/', 'uhr')")
+time.sleep(4)
+driver.execute_script("window.open('https://web.whatsapp.com/', 'WA')")
+driver.switch_to.window('WA')
+time.sleep(8)
+class chat():
+    def write(self, name, input):
+        chat_span = driver.find_element_by_xpath('//span[@title = "{}"]'.format(name))
+        chat_span.click()
+        nachricht = driver.find_element_by_xpath('//div[@class="DuUXI"]')
+        nachricht.send_keys(input)
+        button = driver.find_element_by_xpath('//button[@class="_2Ujuu"]')
+        button.click()
+driver.switch_to.window('uhr')
+uhrzeit = driver.find_element_by_id("time")
+while True:
+    time.sleep(0.25)
+    if uhrzeit.text == Zeitpunkt:
+        driver.switch_to.window('WA')
+        chat().write(Kontakt, Inhalt)
+        time.sleep(1)
+        driver.switch_to.window('uhr')
+
